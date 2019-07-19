@@ -58,6 +58,22 @@ void Encode(MinHeap* node, string code)
 	Encode(node->left,code+"0");
 	Encode(node->right,code+"1");
 }
+string Decode()
+{
+	// Now that we've encoded string and now we got to take our string back, so we've their back code as well.
+	string till_now = "";
+	string decoded_string = "";
+	for(char cur : encoded_string)
+	{
+		till_now += cur;
+		if(char_from.find(till_now) != char_from.end())
+		{
+			decoded_string += char_from[till_now];
+			till_now = "";
+		}
+	}
+	return decoded_string;
+}
 int main()
 {
 	string given_text;
@@ -80,19 +96,9 @@ int main()
 		encoded_string += code_of_char[cur];
 
 	cout<<encoded_string<<endl;
-
-	// Now that we've encoded string and now we got to take our string back, so we've their back code as well.
-	string till_now = "";
-	string decoded_string = "";
-	for(char cur : encoded_string)
-	{
-		till_now += cur;
-		if(char_from.find(till_now) != char_from.end())
-		{
-			decoded_string += char_from[till_now];
-			till_now = "";
-		}
-	}
+	
+// 	Decoded string is finally obtained from the encoded string, which should be same from the given string.
+	string decoded_string = Decode();
 	cout<<decoded_string<<endl;
 	return 0;
 }
