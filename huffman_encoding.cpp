@@ -17,6 +17,9 @@ struct MinHeap
 // Comparator function for insertion in Huffman Tree
 struct cmp
 {
+	// As priority_queue is a max heap rather than min-heap,
+    // invert the meaning of the < operator,
+	// in order to get lower probabilities at the top
 	bool operator()(MinHeap *l,MinHeap *r)
 	{ return l->freq > r->freq; }
 };
